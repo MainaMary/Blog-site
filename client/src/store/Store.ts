@@ -16,7 +16,7 @@ export const store = configureStore({
     [userspostsApi.reducerPath]: userspostsApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware),
+    getDefaultMiddleware().concat(postsApi.middleware, userspostsApi.middleware),
     
    
 });
