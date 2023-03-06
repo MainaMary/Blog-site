@@ -55,7 +55,7 @@ const AllPosts = () => {
             <p  className="cursor-pointer font-semibold text-dark-blue" onClick={() =>navigate(`/singlePost/${label.id}`)}>View post</p>
             <div className="flex my-2 py-2 h-auto items-center border-b border-gray-500">
                
-                <p>{4} <span>comments</span></p>
+                {/* <p>{4} <span>comments</span></p> */}
             </div>
             <div  className="flex justify-between w-full my-2 h-auto items-center">
                 <div className="flex h-auto items-center">
