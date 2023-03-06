@@ -44,7 +44,7 @@ const SinglePost = () => {
   }, [id, commentItems]);
  
   return (
-    <>
+    <div className="mt-12">
      <CommentTitle>Single Post</CommentTitle>
      <div className="block md:flex mt-12 gap-8">
         <div  className="w-full md:w-[45%] h-max shadow-md rounded-md bg-white px-4 py-2">
@@ -60,7 +60,7 @@ const SinglePost = () => {
         <p>Name: <span className="text-dark-blue">{label.name}</span></p>
       </div>)}</div>
     </div>
-    </>
+    </div>
    
   );
 };
