@@ -2,9 +2,10 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 const Login = React.lazy(() => import("../pages/Login"));
 const AllPosts = React.lazy(() => import("../pages/posts/AllPosts"));
-const AddPost = React.lazy(() => import("../pages/posts/AddPost"));
+const AddPost = React.lazy(() => import("../pages/users/AddPost"));
 const Home = React.lazy(() => import("../pages/Home"));
-const SinglePost = React.lazy(() => import("../pages/posts/SinglePost"))
+const SinglePost = React.lazy(() => import("../pages/posts/SinglePost"));
+const Posts = React.lazy(() => import("../pages/users/Posts"));
 
 const Allroutes = () => {
   return (
@@ -13,9 +14,8 @@ const Allroutes = () => {
       {/* <Route path="/sideNavbar" element={<SideNavbar />} /> */}
       <Route path="/login" element={<Login />} />
       <Route path="/posts" element={<AllPosts />} />
-      <Route path="/createPosts" element={<AddPost />} />
-      <Route path="/singlePost/:id" element={<SinglePost/>}/>
-      http://localhost:5173/singlePost/1
+      <Route path="/userPosts" element={<Posts />} />
+      <Route path="/singlePost/:id" element={<SinglePost />} />
     </Routes>
   );
 };

@@ -59,14 +59,13 @@ export interface Inputprops {
   export interface ModalProps {
     openModal?: boolean;
     handleModal? : () => void;
-    postId: string
-    
+   
   }
   export interface PostProps {
     body: string;
     id?: string;
     title: string;
-    userId?: number;
+    userId?: string;
   }
   
   export const menuItems = [
@@ -81,7 +80,7 @@ export interface Inputprops {
 },
 {
     label:"Add Post",
-    path:"/createPosts",
+    path:"/userPosts",
     id:3
 }
 ]

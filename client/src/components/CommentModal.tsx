@@ -6,9 +6,12 @@ import CustomInput from './CustomInput'
 import CustomTitle from "./CustomTitle"
 import CustomLabel from './CustomLabel'
 import CustomButton from './CustomButton'
-import { ModalProps } from '../model/types'
 import { addComment } from '../slice/CommentsSlice'
-
+export interface ModalProps {
+  openModal?: boolean;
+  handleModal? : () => void;
+  postId: string
+}
 const CommentModal = (props:ModalProps) => {
   const [error, setError] = useState<string>('')
   const [val, setVal] = useState<string>('')

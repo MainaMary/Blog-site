@@ -12,7 +12,7 @@ const SinglePost = () => {
     body:'',
     id:'',
     title:'',
-    userId:0
+    userId:''
   });
   const [comments, setComments] = useState<CommentProps[]>();
   const {commentItems} = useAppSelector((state)=>state.comments)
