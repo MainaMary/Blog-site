@@ -44,6 +44,7 @@ const AddPost = (props:ModalProps) => {
    if(response?.data?.status){
     navigate('/userPosts')
    }
+
    console.log(response.data.status);
    
   };

@@ -11,14 +11,16 @@ export const userspostsApi = createApi({
         providesTags: ["Posts"],
       }),
       getSinglePost :builder.query({
-         query:(id) => `post/${id}`
+         query:(id) => `post/${id}`,
+         providesTags: ["Posts"],
       }),
       addPost :builder.mutation<void, PostProps>({
         query: payload =>({
             url: '/post',
             method:'POST',
             body: payload
-        })
+        }),
+        invalidatesTags: ["Posts"],
       }),
       updatePost : builder.mutation<void, PostProps>({
         query: ({id,...rest}) =>({
@@ -26,14 +28,16 @@ export const userspostsApi = createApi({
             method:'PUT',
             body: rest
 
-        })
+        }),
+        invalidatesTags: ["Posts"],
       }),
       deletePost : builder.mutation<void, string>({
         query: (id) =>({
             url: `/post/${id}`,
             method:'DELETE',
            
-        })
+        }),
+        invalidatesTags: ["Posts"],
       })
     }),
   });
