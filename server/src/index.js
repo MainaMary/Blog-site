@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import morgan from "morgan";
+import cors from "cors"
 
 require('dotenv').config()
 
@@ -15,6 +16,7 @@ const mongoURI =
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose
   .connect(mongoURI, {
