@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 import CustomLabel from "../../components/CustomLabel";
 import CustomTitle from "../../components/CustomTitle";
@@ -18,6 +19,7 @@ const AddPost = (props:ModalProps) => {
   const [error, setError] = useState<string>("");
   const [addPost] = useAddPostMutation();
   const { title, body } = formValues;
+  const navigate = useNavigate()
   const handleInput = (e: any) => {
     const { name, value } = e.target;
     setFormValues({
@@ -38,7 +40,12 @@ const AddPost = (props:ModalProps) => {
     };
     console.log(payload, "payload");
 
-    await addPost(payload);
+   const response:any = await addPost(payload);
+   if(response?.data?.status){
+    navigate('/userPosts')
+   }
+   console.log(response.data.status);
+   
   };
 
   if(!openModal) return null

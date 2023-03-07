@@ -6,11 +6,11 @@ export const userspostsApi = createApi({
     tagTypes: ["Posts"],
     endpoints: (builder) => ({
 
-      getPosts: builder.query({
+      getAllPosts: builder.query({
         query: () => "post",
         providesTags: ["Posts"],
       }),
-      getPost :builder.query({
+      getSinglePost :builder.query({
          query:(id) => `post/${id}`
       }),
       addPost :builder.mutation<void, PostProps>({
@@ -37,4 +37,4 @@ export const userspostsApi = createApi({
       })
     }),
   });
-  export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation, useDeletePostMutation, useUpdatePostMutation} = userspostsApi
+  export const { useGetAllPostsQuery, useGetSinglePostQuery, useAddPostMutation, useDeletePostMutation, useUpdatePostMutation} = userspostsApi
