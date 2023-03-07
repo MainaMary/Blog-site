@@ -1,10 +1,14 @@
 // define all post models
 import mongoose from "mongoose";
-
+//mongoose.Schema.Types.ObjectId
 const postSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+//   userId: {
+//     type: String,
+//     ref: "User",
+// },
+userId: {
+  type: String,
+  ref: "User",
 },
   title: {
     type: String,
