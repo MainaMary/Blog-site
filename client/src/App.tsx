@@ -15,10 +15,10 @@ function App() {
 
         <Suspense fallback="loading...">
           <div className="flex">
-            <div className="w-[20%]">
+            <div className=" w-0 md:w-[20%]">
               <SideNavbar />
             </div>
-            <div className=" px-0 md:px-12 w-full md:w-[80%]">
+            <div className=" px-8 md:px-12 w-full md:w-[80%]">
               <Allroutes />
             </div>
           </div>
