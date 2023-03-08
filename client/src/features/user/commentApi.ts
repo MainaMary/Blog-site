@@ -13,7 +13,7 @@ export const commentPostsApi = createApi({
             invalidatesTags:['Comment']
         }),
         getAllPostsComments : builder.query({
-            query:(id) =>`post-comments/${id}`,
+            query:(id) =>`/post-comments/?postId=${id}`,
             providesTags:["Comment"]
 
         })

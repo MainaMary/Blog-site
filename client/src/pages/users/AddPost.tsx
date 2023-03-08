@@ -10,7 +10,7 @@ import { PostProps } from "../../model/types";
 import { useAddPostMutation } from "../../features/user/userPostApi";
 import { useAppSelector, useAppDispatch } from "../../store/Store";
 import { closeEdit } from "../../slice/EditSlice";
-import { useUpdatePostMutation , useGetAllPostsQuery, useGetSinglePostQuery} from "../../features/user/userPostApi";
+import { useUpdatePostMutation , useGetAllPostsQuery } from "../../features/user/userPostApi";
 const AddPost = (props:ModalProps) => {
   const [formValues, setFormValues] = useState<PostProps>({
     title: "",

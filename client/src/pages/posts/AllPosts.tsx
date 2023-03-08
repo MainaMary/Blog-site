@@ -47,7 +47,7 @@ const AllPosts = () => {
         return  (
           <div
             key={label.id}
-            className=" mt-12 px-3 py-2 bg-white shadow-md rounded-md"
+            className=" my-12 px-3 py-2 bg-white shadow-md rounded-md"
           >
             
             <p className="text-blue">{label.title}</p>

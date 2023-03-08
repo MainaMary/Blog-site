@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaCommentAlt } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
 import CustomButton from "../../components/CustomButton";
@@ -11,7 +12,7 @@ import ConfirmModal from "./ConfirmModal";
 import { useAddCommentMutation } from "../../features/user/commentApi";
 import { useAppDispatch, useAppSelector } from "../../store/Store";
 import { openEdit } from "../../slice/EditSlice";
-import { useGetSinglePostQuery } from "../../features/user/userPostApi";
+import { useGetAllPostsCommentsQuery } from "../../features/user/commentApi";
 
 const Posts = () => {
   const [edit, setEdit] = useState(false);
@@ -21,7 +22,9 @@ const Posts = () => {
   const { openModal, handleModal } = useModal();
   const { data, isLoading, isSuccess } = useGetAllPostsQuery("posts");
   const [dataComment, setDataComment] = useState<any>({});
-
+  const navigate = useNavigate()
+  console.log(postId,'post id');
+  
   useEffect(() => {
     setDataComment( data?.data.reduce((obj:any, item:any) => Object.assign(obj, { [item._id]: "" }), {}))
   }, [isSuccess]);
@@ -82,7 +85,7 @@ const Posts = () => {
               >
                 <p className="text-blue">{label.title}</p>
                 <p>{`${label.body}...`}</p>
-                <p className="cursor-pointer font-semibold text-dark-blue">
+                <p  onClick={() =>navigate(`/userPost/${label._id}`)}className="cursor-pointer font-semibold text-dark-blue">
                   View post
                 </p>
                 <div className="flex justify-between w-full mb-2 h-auto items-center">
