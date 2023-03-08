@@ -48,9 +48,12 @@ const AddPost = (props:ModalProps) => {
   }
 useEffect(()=>{
   if(singlePost){
-    setFormValues({...newObj})
+    if(isEdit){
+      setFormValues({...newObj})
+    }
+    
   }
-},[postId])
+},[postId, isEdit])
   
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -75,7 +78,13 @@ useEffect(()=>{
     const response = await updatePost(updatedpayload)
     console.log(response ,'edit form details')
     }else {
-      console.log(formValues.id)
+      console.log(formValues.id),
+      dispatch(closeEdit(false))
+      setFormValues({
+        title:'',
+        body:'',
+        id:''
+      })
    const response:any = await addPost(payload);
    if(response?.data?.status){
     navigate('/userPosts')
