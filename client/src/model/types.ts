@@ -83,6 +83,14 @@ export interface Inputprops {
     _v:number,
     _id:string
  }
+ export interface PhotoProps {
+  albumId: string,
+  id:string,
+  thumbnailUrl: string,
+  title:string,
+  url:string
+
+ }
   export const menuItems = [
     {label:"Home",
     path:"/",

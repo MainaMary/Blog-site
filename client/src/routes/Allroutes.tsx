@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 const Login = React.lazy(() => import("../pages/Login"));
 const AllPosts = React.lazy(() => import("../pages/posts/AllPosts"));
 const NotFound = React.lazy(() => import("../pages/error/NotFound"));
-const Home = React.lazy(() => import("../pages/Home"));
+const Home = React.lazy(() => import("../pages/home/Home"));
 const SinglePost = React.lazy(() => import("../pages/posts/SinglePost"));
 const Posts = React.lazy(() => import("../pages/users/Posts"));
 const UserSinglePost = React.lazy(() =>import("../pages/users/UserSinglePost"))
