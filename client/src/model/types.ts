@@ -58,7 +58,7 @@ export interface Inputprops {
   }
   export interface ModalProps {
     openModal?: boolean;
-    handleModal? : () => void;
+    handleModal : () => void;
    
   }
   export interface PostProps {
@@ -66,6 +66,12 @@ export interface Inputprops {
     id?: string;
     title: string;
     userId?: string;
+  }
+  export interface DataProp {
+    data: {
+      status: boolean,
+      data:any
+    }
   }
   
   export const menuItems = [
