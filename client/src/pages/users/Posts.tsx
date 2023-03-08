@@ -75,7 +75,7 @@ const Posts = () => {
       </div>
       <div>
         {isLoading ? (
-          <p>Load loader</p>
+          <CustomLoader/>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {data?.data?.map((label: any, index: number) => (

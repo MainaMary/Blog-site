@@ -26,7 +26,10 @@ const handleMenu = () =>{
         </li>
       
         </ul>)}
-        <CustomButton className='px-24' onClick={() =>navigate('/login')}>Sign in</CustomButton>
+        <div className='w-full flex text-center m-auto justify-center'>
+        <CustomButton  onClick={() =>navigate('/login')}>Sign in</CustomButton>
+        </div>
+        
         </div>
         <div className='hidden md:block'>
             <CustomButton onClick={() =>navigate('/login')}>Sign in</CustomButton>
