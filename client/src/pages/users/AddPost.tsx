@@ -8,7 +8,9 @@ import { ModalProps } from "../../model/types";
 import CustomModal from "../../components/CustomModal";
 import { PostProps } from "../../model/types";
 import { useAddPostMutation } from "../../features/user/userPostApi";
-
+import { useAppSelector, useAppDispatch } from "../../store/Store";
+import { closeEdit } from "../../slice/EditSlice";
+import { useUpdatePostMutation } from "../../features/user/userPostApi";
 const AddPost = (props:ModalProps) => {
   const [formValues, setFormValues] = useState<PostProps>({
     title: "",
@@ -20,6 +22,10 @@ const AddPost = (props:ModalProps) => {
   const [addPost] = useAddPostMutation();
   const { title, body } = formValues;
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const {isEdit} = useAppSelector(state =>state.edit)
+  const [updatePost] = useAddPostMutation()
+  console.log(isEdit,'edit')
   const handleInput = (e: any) => {
     const { name, value } = e.target;
     setFormValues({
@@ -27,6 +33,10 @@ const AddPost = (props:ModalProps) => {
       [name]: value,
     });
   };
+  const modalHandler = () =>{
+    handleModal()
+    dispatch(closeEdit(false))
+  }
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!title || !body) {
@@ -39,8 +49,9 @@ const AddPost = (props:ModalProps) => {
       userId: String(Math.floor(Math.random() * 100)),
     };
     console.log(payload, "payload");
-
+  
    const response:any = await addPost(payload);
+   console.log()
    if(response?.data?.status){
     navigate('/userPosts')
    }
@@ -52,9 +63,9 @@ const AddPost = (props:ModalProps) => {
   if(!openModal) return null
   return (
     <CustomModal>
-      <div className="w-full md:w-[50%] shadow-lg rounded-2xl flex m-auto bg-white px-8 py-3 items-center justify-center h-auto mt-12">
+      <div className="w-full md:w-[50%] shadow-lg rounded-2xl flex m-auto bg-white px-8 py-3 items-center justify-center h-auto">
         <form className="w-full" onSubmit={handleSubmit}>
-          <CustomTitle>Add post</CustomTitle>
+          <CustomTitle>{isEdit ? 'Edit Details': 'Add post'}</CustomTitle>
           <p className="text-red-500">{error}</p>
           <div className="my-4">
             <CustomLabel>Title</CustomLabel>
@@ -78,8 +89,8 @@ const AddPost = (props:ModalProps) => {
           </div>
 
           <div className="my-4 flex justify-between">
-            <CustomButton type="submit">Add post</CustomButton>
-            <CustomButton onClick={handleModal}>Cancel</CustomButton>
+            <CustomButton type="submit">{isEdit ? 'Edit' :'Add post'}</CustomButton>
+            <CustomButton onClick={modalHandler}>Cancel</CustomButton>
           </div>
         </form>
       </div>
