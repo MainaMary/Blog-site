@@ -40,7 +40,7 @@ const getPosts = async (req, res) => {
      // get page from query params or default to first page
      const page = parseInt(req.query.page) || 1;
      // get pager object for specified page or default to five
-     const pageSize = parseInt(req.query.pageSize) || 5;
+     const pageSize = parseInt(req.query.pageSize) || 10;
      const pager = paginate(data?.length, page, pageSize);
      // get page of items from items array
      const pageOfItems = data.slice(pager.startIndex, pager.endIndex + 1);
