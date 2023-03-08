@@ -3,7 +3,7 @@
 import Comment from "./models";
 
 const getPostComments = async (postId) => {
-  const comments = await Comment.find({}).select({ postId: postId, _id: 0 });
+  const comments = await Comment.find({postId})
   return comments;
 };
 
@@ -16,6 +16,7 @@ const addComment = async (payload) => {
   const newComment = await Comment.create(payload);
   return newComment;
 };
+
 
 const editComment = async (id, updateOps) => {
   await Comment.updateOne({ _id: id }, { $set: updateOps });

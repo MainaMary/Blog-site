@@ -8,6 +8,7 @@ import {
   getSinglePost,
   getPostsByUser,
   updatePost,
+  deletePost
 } from "./controllers";
 import { checkAuth } from "../middleware/auth";
 
@@ -23,5 +24,6 @@ router.get("/post", getPosts);
 router.get("/user-posts",  getPostsByUser);
 router.get("/post/:id", getSinglePost);
 router.put("/post/:id", updatePost);
+router.delete("/post/:id", deletePost)
 
 export default router;

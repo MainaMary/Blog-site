@@ -17,6 +17,10 @@ const getPostById = async (id) => {
   return post;
 };
 
+const deletePostById = async (id) =>{
+  const post = await Post.findByIdAndRemove(id)
+  return post
+}
 const addPost = async (payload) => {
   const newpost = await Post.create(payload);
   return newpost;
@@ -29,5 +33,5 @@ const editPost = async (id, updateOps) => {
   }
 
 export {
-    posts, getPostById, addPost, editPost, getUserPosts
+    posts, getPostById, addPost, editPost, getUserPosts, deletePostById
 }
