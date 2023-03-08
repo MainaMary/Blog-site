@@ -4,19 +4,23 @@ import { postsApi } from "../features/postsApi";
 import {commentReducer} from "../slice/CommentsSlice";
 import usersReducer from "../slice/UsersSlice"
 import { photosReducer } from "../slice/PhotosSlice";
+import { editReducer } from "../slice/EditSlice";
 import { useDispatch, useSelector,TypedUseSelectorHook } from "react-redux";
 import { userspostsApi } from "../features/user/userPostApi";
+import { commentPostsApi } from "../features/user/commentApi";
 
 export const store = configureStore({
   reducer: {
     comments: commentReducer,
     users: usersReducer,
     photos: photosReducer,
+    edit: editReducer,
     [postsApi.reducerPath]: postsApi.reducer,
-    [userspostsApi.reducerPath]: userspostsApi.reducer
+    [userspostsApi.reducerPath]: userspostsApi.reducer,
+    [commentPostsApi.reducerPath] :commentPostsApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware, userspostsApi.middleware),
+    getDefaultMiddleware().concat(postsApi.middleware, userspostsApi.middleware, commentPostsApi.middleware),
     
    
 });
