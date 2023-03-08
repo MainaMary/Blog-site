@@ -11,6 +11,7 @@ import ConfirmModal from "./ConfirmModal";
 import { useAddCommentMutation } from "../../features/user/commentApi";
 import { useAppDispatch, useAppSelector } from "../../store/Store";
 import { openEdit } from "../../slice/EditSlice";
+import { useGetSinglePostQuery } from "../../features/user/userPostApi";
 
 const Posts = () => {
   const [edit, setEdit] = useState(false);
@@ -19,6 +20,7 @@ const Posts = () => {
   const [comment, setComment] = useState<string>("");
   const { openModal, handleModal } = useModal();
   const { data, isLoading, isSuccess } = useGetAllPostsQuery("posts");
+  
   const [dataComment, setDataComment] = useState<any>({});
 
   useEffect(() => {
@@ -37,6 +39,7 @@ const Posts = () => {
   };
   const handleUpdate = (id: string) => {
     dispatch(openEdit(true));
+    setPostId(id)
     handleModal();
   };
   const handleCommentForm = () => {
@@ -100,7 +103,7 @@ const Posts = () => {
                     onSubmit={(e: any) => handleFormSubmit(e, label._id)}
                     className="flex"
                   >
-                    <div className="my-4 block ">
+                    <div className="my-4 block md:flex w-full justify-between">
                       {/* <CustomInput
                         placeholder="e.g Good article"
                         name="labelId"
@@ -115,7 +118,7 @@ const Posts = () => {
                         type="text"
                         value={comment}
                       />
-                      <CustomButton>Add comment</CustomButton>
+                      <CustomButton className="md:ml-3">Add</CustomButton>
                     </div>
                   </form>
                 )}
@@ -147,7 +150,7 @@ const Posts = () => {
         />
       )}
       {openModal && !edit && (
-        <AddPost openModal={openModal} handleModal={handleModal} />
+        <AddPost openModal={openModal} handleModal={handleModal} postId={postId} />
       )}
     </div>
   );
