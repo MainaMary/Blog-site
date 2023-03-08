@@ -2,7 +2,7 @@ import React from 'react'
 
 const CustomLoader = () => {
   return (
-    <div>CustomLoader</div>
+    <div className='m-auto text-center'>Loading...</div>
   )
 }
 

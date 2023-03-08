@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/CustomButton";
 import CustomLabel from "../../components/CustomLabel";
@@ -10,14 +10,14 @@ import { PostProps } from "../../model/types";
 import { useAddPostMutation } from "../../features/user/userPostApi";
 import { useAppSelector, useAppDispatch } from "../../store/Store";
 import { closeEdit } from "../../slice/EditSlice";
-import { useUpdatePostMutation } from "../../features/user/userPostApi";
+import { useUpdatePostMutation , useGetAllPostsQuery, useGetSinglePostQuery} from "../../features/user/userPostApi";
 const AddPost = (props:ModalProps) => {
   const [formValues, setFormValues] = useState<PostProps>({
     title: "",
     body: "",
     id: "",
   });
-  const {openModal, handleModal} = props
+  const {openModal, handleModal, postId} = props
   const [error, setError] = useState<string>("");
   const [addPost] = useAddPostMutation();
   const { title, body } = formValues;
@@ -25,6 +25,7 @@ const AddPost = (props:ModalProps) => {
   const dispatch = useAppDispatch()
   const {isEdit} = useAppSelector(state =>state.edit)
   const [updatePost] = useAddPostMutation()
+  const {data, isSuccess} = useGetAllPostsQuery('posts')
   console.log(isEdit,'edit')
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -37,6 +38,21 @@ const AddPost = (props:ModalProps) => {
     handleModal()
     dispatch(closeEdit(false))
   }
+  // const {data:single} = useGetSinglePostQuery(postId)
+  console.log(postId,'singlepost')
+  const singlePost = data?.data?.find((item)=> item._id === postId)
+  console.log(singlePost,'find method')
+  const newObj = {
+    title: singlePost?.title,
+    body: singlePost?.body,
+    id: singlePost?._id
+  }
+useEffect(()=>{
+  if(singlePost){
+    setFormValues({...newObj})
+  }
+},[postId])
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!title || !body) {

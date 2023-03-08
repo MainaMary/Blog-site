@@ -20,7 +20,6 @@ const Posts = () => {
   const [comment, setComment] = useState<string>("");
   const { openModal, handleModal } = useModal();
   const { data, isLoading, isSuccess } = useGetAllPostsQuery("posts");
-  
   const [dataComment, setDataComment] = useState<any>({});
 
   useEffect(() => {

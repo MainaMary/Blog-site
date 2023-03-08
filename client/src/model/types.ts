@@ -59,6 +59,7 @@ export interface Inputprops {
   export interface ModalProps {
     openModal?: boolean;
     handleModal : () => void;
+    postId:string | null
    
   }
   export interface PostProps {
