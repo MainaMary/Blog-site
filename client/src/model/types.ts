@@ -64,7 +64,7 @@ export interface Inputprops {
   }
   export interface PostProps {
     body: string;
-    id?: string;
+    id?: string | null
     title: string;
     userId?: string;
   }

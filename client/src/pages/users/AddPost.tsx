@@ -24,8 +24,8 @@ const AddPost = (props:ModalProps) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const {isEdit} = useAppSelector(state =>state.edit)
-  const [updatePost] = useAddPostMutation()
-  const {data, isSuccess} = useGetAllPostsQuery('posts')
+  const [updatePost] = useUpdatePostMutation()
+  const {data} = useGetAllPostsQuery('posts')
   console.log(isEdit,'edit')
   const handleInput = (e: any) => {
     const { name, value } = e.target;
@@ -38,10 +38,8 @@ const AddPost = (props:ModalProps) => {
     handleModal()
     dispatch(closeEdit(false))
   }
-  // const {data:single} = useGetSinglePostQuery(postId)
-  console.log(postId,'singlepost')
   const singlePost = data?.data?.find((item)=> item._id === postId)
-  console.log(singlePost,'find method')
+ 
   const newObj = {
     title: singlePost?.title,
     body: singlePost?.body,
@@ -64,15 +62,28 @@ useEffect(()=>{
       title,
       userId: String(Math.floor(Math.random() * 100)),
     };
-    console.log(payload, "payload");
-  
+    const updatedpayload = {
+      body,
+      title,
+      userId: String(Math.floor(Math.random() * 100)),
+      id:postId
+    };
+    
+    if(formValues.id){
+      console.log(formValues?.id)
+    const response = await updatePost(updatedpayload)
+    console.log(response ,'edit form details')
+    }else {
+      console.log(formValues.id)
    const response:any = await addPost(payload);
-   console.log()
    if(response?.data?.status){
     navigate('/userPosts')
    }
 
    console.log(response.data.status);
+    }
+   
+  
    
   };
 
