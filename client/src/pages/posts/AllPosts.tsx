@@ -58,10 +58,10 @@ const AllPosts = () => {
                 {/* <p>{4} <span>comments</span></p> */}
             </div>
             <div  className="flex justify-between w-full my-2 h-auto items-center">
-                {/* <div className="flex h-auto items-center">
+                <div className="flex h-auto items-center">
                 <AiFillLike className="text-gray-500"/>
                 <p className="ml-4">Like</p>
-                </div> */}
+                </div>
                 <div className="flex h-auto items-center cursor-pointer" onClick={() =>{handleModal(), setPostId(label.id)}}>
                 <FaCommentAlt className="text-gray-500"/>
                 <p className="ml-4">comment</p>
