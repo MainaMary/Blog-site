@@ -19,10 +19,10 @@ const handleMenu = () =>{
         <div onClick={handleMenu} className="block md:hidden">
           {open ? <AiOutlineClose size={20}/> :<FiMenu size={20}/>}
         </div>
-        <div className={open ? "fixed top-7 left-0" :"hidden"}>
+        <div className={open ? "fixed top-24 bg-white z-10 h-full left-0 shadow-md" :"hidden"}>
         {menuItems.map(label =><ul key={label.id}>
         <li className='py-16'>
-            <Link to={label.path} className="px-24 text-dark-blue">{label.label}</Link>
+            <Link to={label.path} onClick={handleMenu} className="px-24 text-dark-blue">{label.label}</Link>
         </li>
       
         </ul>)}
