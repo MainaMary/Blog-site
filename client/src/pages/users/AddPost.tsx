@@ -4,7 +4,7 @@ import CustomButton from "../../components/CustomButton";
 import CustomLabel from "../../components/CustomLabel";
 import CustomTitle from "../../components/CustomTitle";
 import CustomInput from "../../components/CustomInput";
-import { ModalProps } from "../../model/types";
+import { ModalProps , SinglePostProps} from "../../model/types";
 import CustomModal from "../../components/CustomModal";
 import { PostProps } from "../../model/types";
 import { useAddPostMutation } from "../../features/user/userPostApi";
@@ -38,7 +38,8 @@ const AddPost = (props:ModalProps) => {
     handleModal()
     dispatch(closeEdit(false))
   }
-  const singlePost = data?.data?.find((item)=> item._id === postId)
+  const singlePost = data?.data?.find((item:SinglePostProps)=> item._id === postId)
+  console.log(singlePost)
  
   const newObj = {
     title: singlePost?.title,

@@ -74,7 +74,15 @@ export interface Inputprops {
       data:any
     }
   }
-  
+  export interface SinglePostProps {
+    body :string,
+    createdAt: string,
+    title: string,
+    updatedAt: string,
+    userId: string,
+    _v:number,
+    _id:string
+ }
   export const menuItems = [
     {label:"Home",
     path:"/",
