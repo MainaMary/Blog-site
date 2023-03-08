@@ -8,6 +8,7 @@ import {
   addPost,
   getUserPosts,
   editPost,
+  deletePostById
 } from "./db";
 
 const createPost = async (req, res) => {
@@ -111,6 +112,22 @@ const getSinglePost = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) =>{
+  try{
+    const id = req.params.id
+    const deleteDetails = await deletePostById(id);
+    res.status(200).json({
+      status: true,
+      data: deleteDetails,
+    });
+  }
+  catch(err){
+    res.status(400).json({
+      status: false,
+      error: err,
+    });
+  }
+}
 
 const updatePost = async (req, res) => {
   try {
@@ -138,4 +155,5 @@ export {
   getSinglePost,
   getPostsByUser,
   updatePost,
+  deletePost
 };
