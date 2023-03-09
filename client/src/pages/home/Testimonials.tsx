@@ -25,6 +25,7 @@ const Testimonials = () => {
       {state?.data.slice(0, 4).map((label: PhotoProps, index:number) => {
         return (
           <div
+          key={index}
             className="shadow-md w-[95%]  text-center rounded-md bg-white px-3 py-4">
             <img
               src={label.url}
