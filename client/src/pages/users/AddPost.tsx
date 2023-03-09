@@ -4,29 +4,33 @@ import CustomButton from "../../components/CustomButton";
 import CustomLabel from "../../components/CustomLabel";
 import CustomTitle from "../../components/CustomTitle";
 import CustomInput from "../../components/CustomInput";
-import { ModalProps , SinglePostProps} from "../../model/types";
+import { ModalProps, SinglePostProps } from "../../model/types";
 import CustomModal from "../../components/CustomModal";
 import { PostProps } from "../../model/types";
 import { useAddPostMutation } from "../../features/user/userPostApi";
 import { useAppSelector, useAppDispatch } from "../../store/Store";
 import { closeEdit } from "../../slice/EditSlice";
-import { useUpdatePostMutation , useGetAllPostsQuery } from "../../features/user/userPostApi";
-const AddPost = (props:ModalProps) => {
+import CustomSnackbar from "../../components/CustomSnackbar";
+import {
+  useUpdatePostMutation,
+  useGetAllPostsQuery,
+} from "../../features/user/userPostApi";
+const AddPost = (props: ModalProps) => {
   const [formValues, setFormValues] = useState<PostProps>({
     title: "",
     body: "",
     id: "",
   });
-  const {openModal, handleModal, postId} = props
+  const { openModal, handleModal, postId } = props;
   const [error, setError] = useState<string>("");
   const [addPost] = useAddPostMutation();
   const { title, body } = formValues;
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const {isEdit} = useAppSelector(state =>state.edit)
-  const [updatePost] = useUpdatePostMutation()
-  const {data} = useGetAllPostsQuery('posts')
-  console.log(isEdit,'edit')
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { isEdit } = useAppSelector((state) => state.edit);
+  const [updatePost] = useUpdatePostMutation();
+  const { data } = useGetAllPostsQuery("posts");
+  console.log(isEdit, "edit");
   const handleInput = (e: any) => {
     const { name, value } = e.target;
     setFormValues({
@@ -34,27 +38,28 @@ const AddPost = (props:ModalProps) => {
       [name]: value,
     });
   };
-  const modalHandler = () =>{
-    handleModal()
-    dispatch(closeEdit(false))
-  }
-  const singlePost = data?.data?.find((item:SinglePostProps)=> item._id === postId)
-  console.log(singlePost)
- 
+  const modalHandler = () => {
+    handleModal();
+    dispatch(closeEdit(false));
+  };
+  const singlePost = data?.data?.find(
+    (item: SinglePostProps) => item._id === postId
+  );
+  console.log(singlePost);
+
   const newObj = {
     title: singlePost?.title,
     body: singlePost?.body,
-    id: singlePost?._id
-  }
-useEffect(()=>{
-  if(singlePost){
-    if(isEdit){
-      setFormValues({...newObj})
+    id: singlePost?._id,
+  };
+  useEffect(() => {
+    if (singlePost) {
+      if (isEdit) {
+        setFormValues({ ...newObj });
+      }
     }
-    
-  }
-},[postId, isEdit])
-  
+  }, [postId, isEdit]);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!title || !body) {
@@ -70,39 +75,38 @@ useEffect(()=>{
       body,
       title,
       userId: String(Math.floor(Math.random() * 100)),
-      id:postId
+      id: postId,
     };
-    
-    if(formValues.id){
-      console.log(formValues?.id)
-    const response = await updatePost(updatedpayload)
-    console.log(response ,'edit form details')
-    }else {
-      console.log(formValues.id),
-      dispatch(closeEdit(false))
-      setFormValues({
-        title:'',
-        body:'',
-        id:''
-      })
-   const response:any = await addPost(payload);
-   if(response?.data?.status){
-    navigate('/userPosts')
-   }
 
-   console.log(response.data.status);
+    if (formValues.id) {
+      console.log(formValues?.id);
+      const response = await updatePost(updatedpayload);
+      console.log(response, "edit form details");
+    } else {
+      console.log(formValues.id), dispatch(closeEdit(false));
+
+      const response: any = await addPost(payload);
+      console.log(response, "post items");
+
+      if (response.data.status) {
+        <CustomSnackbar
+          severity="success"
+          alertTitle="Success"
+          message="Post successfully created"
+        />;
+      
+      }
+     
+      console.log(response.data.status);
     }
-   
-  
-   
   };
 
-  if(!openModal) return null
+  if (!openModal) return null;
   return (
     <CustomModal>
       <div className="w-full md:w-[50%] shadow-lg rounded-2xl flex m-auto bg-white px-8 py-3 items-center justify-center h-auto">
         <form className="w-full" onSubmit={handleSubmit}>
-          <CustomTitle>{isEdit ? 'Edit Details': 'Add post'}</CustomTitle>
+          <CustomTitle>{isEdit ? "Edit Details" : "Add post"}</CustomTitle>
           <p className="text-red-500">{error}</p>
           <div className="my-4">
             <CustomLabel>Title</CustomLabel>
@@ -126,7 +130,9 @@ useEffect(()=>{
           </div>
 
           <div className="my-4 flex justify-between">
-            <CustomButton type="submit">{isEdit ? 'Edit' :'Add post'}</CustomButton>
+            <CustomButton type="submit">
+              {isEdit ? "Edit" : "Add post"}
+            </CustomButton>
             <CustomButton onClick={modalHandler}>Cancel</CustomButton>
           </div>
         </form>

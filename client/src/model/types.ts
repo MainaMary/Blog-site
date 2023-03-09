@@ -98,4 +98,11 @@ export interface Inputprops {
   id:number,
   icon:JSX.Element
  }
+ export type SnackProps = {
+  open?: boolean;
+  setOpen?: (value: any) => void;
+  severity: 'error' | 'warning' | 'success' | 'info';
+  message?: string;
+  alertTitle: string;
+};
  
