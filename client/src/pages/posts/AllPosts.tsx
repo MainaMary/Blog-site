@@ -56,10 +56,24 @@ const AllPosts = () => {
             key={label.id}
             className=" my-12 px-3 py-2 bg-white shadow-md rounded-md"
           >
-            
-            <p className="text-dark-blue">{label.title}</p>
-            <p>{`${label.body.slice(0, 70)}...`}</p>
-            <p  className="cursor-pointer font-semibold text-dark-blue" onClick={() =>navigate(`/singlePost/${label.id}`)}>View post</p>
+            <div className="flex ite">
+              <div>
+                <img src={img[index]} alt="post" className="w-[30px] h-[30px] rounded-full"/>
+              </div>
+              <div className="text-sm ml-4">
+                <p>{email[index].split('@')[0]}</p>
+                <p> 2 hours ago</p>
+              </div>
+            </div>
+            <p className="text-dark-blue h-[60px] mt-4">{label.title}</p>
+            <div className="h-[80px]">
+            <p>{`${label.body.slice(0, 70)}...`}<span onClick={() =>navigate(`/singlePost/${label.id}`)} className="text-dark-blue font-semibold cursor-pointer">Read more</span></p>
+            </div>
+           
+            <div>
+                <img src={img[index]} alt="post" className="w-[300px] h-[150px]"/>
+              </div>
+            <p  className="cursor-pointer font-semibold text-dark-blue mt-4" onClick={() =>navigate(`/singlePost/${label.id}`)}>View post</p>
             <div className="flex my-2 py-2 h-auto items-center border-b border-gray-500">
                
                 {/* <p>{4} <span>comments</span></p> */}
