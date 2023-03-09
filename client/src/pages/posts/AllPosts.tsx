@@ -60,7 +60,7 @@ const AllPosts = () => {
             key={label.id}
             className=" my-12 px-3 py-2 bg-white shadow-md rounded-md"
           >
-            <div className="flex ite">
+            <div className="flex items-center">
               <div>
                 <img src={img[index]} alt="post" className="w-[30px] h-[30px] rounded-full"/>
               </div>

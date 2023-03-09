@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaCommentAlt } from "react-icons/fa";
+import { FaCommentAlt, FaUserAlt } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
 import CustomButton from "../../components/CustomButton";
 import CustomTitle from "../../components/CustomTitle";
@@ -10,7 +10,7 @@ import { useGetAllPostsQuery } from "../../features/user/userPostApi";
 import CustomLoader from "../../components/CustomLoader";
 import ConfirmModal from "./ConfirmModal";
 import { useAddCommentMutation } from "../../features/user/commentApi";
-import { useAppDispatch, useAppSelector } from "../../store/Store";
+import { useAppDispatch } from "../../store/Store";
 import { openEdit } from "../../slice/EditSlice";
 import { useGetAllPostsCommentsQuery } from "../../features/user/commentApi";
 
@@ -22,17 +22,22 @@ const Posts = () => {
   const { openModal, handleModal } = useModal();
   const { data, isLoading, isSuccess } = useGetAllPostsQuery("posts");
   const [dataComment, setDataComment] = useState<any>({});
-  const navigate = useNavigate()
-  console.log(postId,'post id');
-  
+  const navigate = useNavigate();
+  console.log(postId, "post id");
+
   useEffect(() => {
-    setDataComment( data?.data.reduce((obj:any, item:any) => Object.assign(obj, { [item._id]: "" }), {}))
+    setDataComment(
+      data?.data.reduce(
+        (obj: any, item: any) => Object.assign(obj, { [item._id]: "" }),
+        {}
+      )
+    );
   }, [isSuccess]);
 
   const [addComment] = useAddCommentMutation();
   const dispatch = useAppDispatch();
-//onClick handler -append/push postId  to an array if it does not exist || remove post id from an array if it exist
-//if(arraypostIds.include(laId)) show
+  //onClick handler -append/push postId  to an array if it does not exist || remove post id from an array if it exist
+  //if(arraypostIds.include(laId)) show
 
   console.log(dataComment, "comment");
 
@@ -41,7 +46,7 @@ const Posts = () => {
   };
   const handleUpdate = (id: string) => {
     dispatch(openEdit(true));
-    setPostId(id)
+    setPostId(id);
     handleModal();
   };
   const handleCommentForm = () => {
@@ -75,7 +80,7 @@ const Posts = () => {
       </div>
       <div>
         {isLoading ? (
-          <CustomLoader/>
+          <CustomLoader />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {data?.data?.map((label: any, index: number) => (
@@ -83,9 +88,23 @@ const Posts = () => {
                 key={index}
                 className=" mt-12 px-3 py-2 bg-white shadow-md rounded-md"
               >
-                <p className="text-blue">{label.title}</p>
-                <p>{`${label.body}...`}</p>
-                <p  onClick={() =>navigate(`/userPost/${label._id}`)}className="cursor-pointer font-semibold text-dark-blue">
+                <div className="flex items-center h-auto">
+                  <div>
+                   
+                    <FaUserAlt size={20}/>
+                    
+                  </div>
+                  <div className="text-sm ml-4">
+                    <p>{'email'}</p>
+                    <p> 2 hours ago</p>
+                  </div>
+                </div>
+                <p className="text-dark-blue h-[60px] mt-4 ">{label.title}</p>
+                <p className="h-[80px]">{`${label.body}...`}</p>
+                <p
+                  onClick={() => navigate(`/userPost/${label._id}`)}
+                  className="cursor-pointer font-semibold text-dark-blue mt-4"
+                >
                   View post
                 </p>
                 <div className="flex justify-between w-full mb-2 h-auto items-center">
@@ -116,7 +135,7 @@ const Posts = () => {
                       <CustomInput
                         placeholder="e.g Good article"
                         name="comment"
-                        onChange={(e:any)=> setComment(e.target.value)}
+                        onChange={(e: any) => setComment(e.target.value)}
                         type="text"
                         value={comment}
                       />
@@ -152,7 +171,11 @@ const Posts = () => {
         />
       )}
       {openModal && !edit && (
-        <AddPost openModal={openModal} handleModal={handleModal} postId={postId} />
+        <AddPost
+          openModal={openModal}
+          handleModal={handleModal}
+          postId={postId}
+        />
       )}
     </div>
   );
