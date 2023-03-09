@@ -65,7 +65,7 @@ const AllPosts = () => {
                 <img src={img[index]} alt="post" className="w-[30px] h-[30px] rounded-full"/>
               </div>
               <div className="text-sm ml-4">
-                <p>{email[index].split('@')[0]}</p>
+                <p>{email[index]?.split('@')[0]}</p>
                 <p> 2 hours ago</p>
               </div>
             </div>

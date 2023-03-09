@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import {AiOutlineClose} from "react-icons/ai"
 import CustomButton from './CustomButton'
-import { menuItems } from '../model/types'
+import NavLink from './NavLink'
+
 
 
 const Navbar = () => {
@@ -19,13 +20,8 @@ const handleMenu = () =>{
         <div onClick={handleMenu} className="block md:hidden">
           {open ? <AiOutlineClose size={20}/> :<FiMenu size={20}/>}
         </div>
-        <div className={open ? "fixed top-24 bg-white z-10 h-full left-0 shadow-md" :"hidden"}>
-        {menuItems.map(label =><ul key={label.id}>
-        <li className='py-16'>
-            <Link to={label.path} onClick={handleMenu} className="px-24 text-dark-blue">{label.label}</Link>
-        </li>
-      
-        </ul>)}
+        <div className={open ? "fixed top-24 bg-white z-10 h-full left-0 shadow-md w-[50%]" :"hidden"}>
+        <NavLink onClick={handleMenu}/>
         <div className='w-full flex text-center m-auto justify-center'>
         <CustomButton  onClick={() =>navigate('/login')}>Sign in</CustomButton>
         </div>
