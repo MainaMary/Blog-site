@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { IconType } from "react-icons";
 export interface BtnProps {
     name?:string ;
     icon?: ReactNode;
@@ -90,5 +91,11 @@ export interface Inputprops {
   title:string,
   url:string
 
+ }
+ export interface MenuProps {
+  label: string,
+  path: string,
+  id:number,
+  icon:JSX.Element
  }
  

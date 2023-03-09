@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { VscAdd } from "react-icons/vsc";
 import { HiViewGrid } from "react-icons/hi";
+import { MenuProps } from "../model/types";
 
 const menuItems = [
   { label: "Home", path: "/", id: 1, icon: <AiFillHome /> },
@@ -23,7 +24,7 @@ const menuItems = [
 const SideNavbar = () => {
   return (
     <div className="fixed h-full w-[20%] shadow-md hidden md:block">
-      {menuItems.map((label) => (
+      {menuItems.map((label:MenuProps) => 
         <ul key={label.id}>
           <li className="py-16">
             <Link
@@ -35,7 +36,7 @@ const SideNavbar = () => {
             </Link>
           </li>
         </ul>
-      ))}
+      )}
     </div>
   );
 };
