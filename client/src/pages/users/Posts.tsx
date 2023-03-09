@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAppSelector } from "../../store/Store";
 import { useNavigate } from "react-router-dom";
 import { FaCommentAlt, FaUserAlt } from "react-icons/fa";
 import useModal from "../../hooks/useModal";
@@ -12,7 +13,7 @@ import ConfirmModal from "./ConfirmModal";
 import { useAddCommentMutation } from "../../features/user/commentApi";
 import { useAppDispatch } from "../../store/Store";
 import { openEdit } from "../../slice/EditSlice";
-import { useGetAllPostsCommentsQuery } from "../../features/user/commentApi";
+
 
 const Posts = () => {
   const [edit, setEdit] = useState(false);
@@ -23,7 +24,7 @@ const Posts = () => {
   const { data, isLoading, isSuccess } = useGetAllPostsQuery("posts");
   const [dataComment, setDataComment] = useState<any>({});
   const navigate = useNavigate();
-  console.log(postId, "post id");
+  const { isEdit } = useAppSelector((state) => state.edit);
 
   useEffect(() => {
     setDataComment(
@@ -48,6 +49,7 @@ const Posts = () => {
     dispatch(openEdit(true));
     setPostId(id);
     handleModal();
+    setEdit(false)
   };
   const handleCommentForm = () => {
     setShowForm((prev) => !prev);
@@ -163,7 +165,7 @@ const Posts = () => {
           </div>
         )}
       </div>
-      {openModal && edit && (
+      {openModal && edit &&  (
         <ConfirmModal
           openModal={openModal}
           handleModal={handleModal}
