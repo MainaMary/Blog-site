@@ -18,7 +18,7 @@ interface PProps {
 }
 const AllPosts = () => {
   const [openModal,setOpenModal] = useState<boolean>(false)
-  const {commentItems} = useAppSelector((state)=> state.comments)
+ const [like, setLike] = useState<boolean>(false)
   const [postId, setPostId] = useState<string>('')
   const { data, isLoading, isError, error } = useGetAllPostsQuery("posts");
   
@@ -35,7 +35,11 @@ const AllPosts = () => {
     dispatch(fetchPhotos());
    
   },[])
- 
+  const handleLike = (id:string) =>{
+    setPostId(id)
+    setLike(prev => !prev)
+
+  }
   const state = useAppSelector((state) => state.photos);
   const comments = useAppSelector((state) => state.comments);
   const email = comments?.commentItems.slice(0, 12).map((name) => name.email);
@@ -71,7 +75,7 @@ const AllPosts = () => {
             </div>
            
             <div>
-                <img src={img[index]} alt="post" className="w-[300px] h-[150px]"/>
+                <img src={img[index]} alt="post" className="w-full h-[150px] rounded-md"/>
               </div>
             <p  className="cursor-pointer font-semibold text-dark-blue mt-4" onClick={() =>navigate(`/singlePost/${label.id}`)}>View post</p>
             <div className="flex my-2 py-2 h-auto items-center border-b border-gray-500">
@@ -79,8 +83,8 @@ const AllPosts = () => {
                 {/* <p>{4} <span>comments</span></p> */}
             </div>
             <div  className="flex justify-between w-full my-2 h-auto items-center">
-                <div className="flex h-auto items-center">
-                <AiFillLike className="text-gray-500"/>
+                <div className="flex h-auto items-center" onClick={() =>handleLike(label.id)}>
+                <AiFillLike className={ like && label.id === postId  ? 'text-red-500':'text-gray-500' }/>
                 <p className="ml-4">Like</p>
                 </div>
                 <div className="flex h-auto items-center cursor-pointer" onClick={() =>{handleModal(), setPostId(label.id)}}>

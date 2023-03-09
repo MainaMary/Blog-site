@@ -15,7 +15,7 @@
       @apply text-5xl;
     }
     a {
-      @apply no-underline font-medium text-[#646cff] hover:text-[#535bf2];
+      @apply no-underline font-medium text-[#646cff] hover:text-red-700;
     }
     li {
         @apply text-lg

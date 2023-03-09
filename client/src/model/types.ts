@@ -91,19 +91,4 @@ export interface Inputprops {
   url:string
 
  }
-  export const menuItems = [
-    {label:"Home",
-    path:"/",
-    id:1
-},
-{
-    label:"All Posts",
-    path:"/posts",
-    id:2
-},
-{
-    label:"Add Post",
-    path:"/userPosts",
-    id:3
-}
-]
+ 
