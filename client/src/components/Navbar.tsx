@@ -14,7 +14,7 @@ const handleMenu = () =>{
   setOpen(prev => !prev)
 }
   return (
-    <nav className='shadow-md flex px-8 md:px-24 py-8  w-full justify-between items-center'>
+    <nav className='bg-[#f5f5f5] z-20 fixed shadow-md flex px-8 md:px-24 py-8  w-full justify-between items-center'>
         <h2 className=' cursor-pointer text-2xl text-dark-blue font-semibold' onClick={() =>navigate('/')}>Daily Blog News</h2>
         <div onClick={handleMenu} className="block md:hidden">
           {open ? <AiOutlineClose size={20}/> :<FiMenu size={20}/>}

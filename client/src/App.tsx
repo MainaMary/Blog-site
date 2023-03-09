@@ -14,7 +14,7 @@ function App() {
         <Navbar />
 
         <Suspense fallback="loading...">
-          <div className="flex">
+          <div className="flex pt-24">
             <div className=" w-0 md:w-[20%]">
               <SideNavbar />
             </div>

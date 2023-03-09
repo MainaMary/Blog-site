@@ -7,7 +7,9 @@ import {FaCommentAlt} from "react-icons/fa"
 import {AiFillLike} from "react-icons/ai"
 import CommentModal from "../../components/CommentModal";
 import { useAppSelector } from "../../store/Store";
-import { fetchComments } from "../../slice/CommentsSlice";
+import { fetchComments} from "../../slice/CommentsSlice";
+import { fetchPhotos } from "../../slice/PhotosSlice";
+import { PhotoProps } from "../../model/types";
 interface PProps {
   body: string;
     id: string;
@@ -30,9 +32,14 @@ const AllPosts = () => {
   }
   useEffect(()=>{
     dispatch(fetchComments())
+    dispatch(fetchPhotos());
    
   },[])
-  console.log(postId,'post id');
+ 
+  const state = useAppSelector((state) => state.photos);
+  const comments = useAppSelector((state) => state.comments);
+  const email = comments?.commentItems.slice(0, 12).map((name) => name.email);
+  const img = state?.data.slice(0, 12).map((name:PhotoProps) => name.url);
 
   //https://jsonplaceholder.typicode.com/comments?postId=1
   //console.log(data?.slice(0, 15));
@@ -40,7 +47,7 @@ const AllPosts = () => {
     <>
     <div>
       {isLoading ? <CustomLoader/> : (<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {data?.slice(0, 12).map((label: PProps) => 
+        {data?.slice(0, 12).map((label: PProps, index:number) => 
        
        {
      
@@ -50,8 +57,8 @@ const AllPosts = () => {
             className=" my-12 px-3 py-2 bg-white shadow-md rounded-md"
           >
             
-            <p className="text-blue">{label.title}</p>
-            <p>{`${label.body}...`}</p>
+            <p className="text-dark-blue">{label.title}</p>
+            <p>{`${label.body.slice(0, 70)}...`}</p>
             <p  className="cursor-pointer font-semibold text-dark-blue" onClick={() =>navigate(`/singlePost/${label.id}`)}>View post</p>
             <div className="flex my-2 py-2 h-auto items-center border-b border-gray-500">
                
