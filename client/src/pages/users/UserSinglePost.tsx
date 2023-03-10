@@ -3,6 +3,17 @@ import { useParams } from 'react-router-dom'
 import CommentTitle from "../../components/CustomTitle"
 import { useGetAllPostsCommentsQuery } from '../../features/user/commentApi'
 
+interface Props {
+  body:string;
+  createdAt:string,
+  email:string,
+  name:string,
+  postId: string,
+  updatedAt:string,
+  id:string,
+  _v: number
+}
+
 const UserSinglePost = () => {
   const {id} = useParams()
   const {data} = useGetAllPostsCommentsQuery(id)
@@ -21,7 +32,7 @@ const UserSinglePost = () => {
 
         <div className="w-full md:w-[55%] ">
           <p>Comments</p>
-          {data?.data?.map((label) => (
+          {data?.data?.map((label:Props) => (
             <div
               className="px-4 py-2 border-solid border-2 border-gray-400 rounded-md my-2 "
               key={label.id}
