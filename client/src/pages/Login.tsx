@@ -6,20 +6,17 @@ import CustomTitle from "../components/CustomTitle"
 import { FormProps } from '../model/types'
 import CustomLoader from '../components/CustomLoader'
 import {AiFillEye, AiFillEyeInvisible} from "react-icons/ai"
-
+import useVisible from '../hooks/useVisible'
 const Login = () => {
-const [visible, setVisible] = useState<boolean>(false)
 const [loading, setLoading] = useState<boolean>(false)
 const [error, setError] = useState<string>('')
 const [formValues, setFormValues] = useState<FormProps>({
     email:'',
     password:''
 })
-
+const {visible, handleVisisble} = useVisible()
 const {email, password} = formValues
-const handleVisisble = () =>{
-    setVisible(prev => !prev)
-}
+
 const handleInputChange = (e:any) =>{
     const {name, value} = e.target
     setFormValues({
