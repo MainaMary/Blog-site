@@ -7,6 +7,7 @@ import CustomLabel from '../../components/CustomLabel'
 import useVisible from '../../hooks/useVisible'
 import CustomLoader from '../../components/CustomLoader'
 import { FormProps } from '../../model/types'
+import { useAddUserMutation } from '../../features/user/userApi'
 
 const Signup = () => {
     const [formValues, setFormValues] = useState<FormProps>({
@@ -16,16 +17,28 @@ const Signup = () => {
 const [error, setError] = useState('')
 const [loading, setLoading] = useState('')
 const {visible, handleVisisble} = useVisible()
-const handleSubmit = (e:any) =>{
-    e.preventDefault()
-}
+const [addUser] = useAddUserMutation()
+const {email, password} = formValues
+
 const handleInputChange =(e:any) =>{
+  const {value, name} = e.target
+  setFormValues({...formValues, [name]:value})
+  setError('')
 
 }
+const handleSubmit = async (e:any) =>{
+  e.preventDefault()
+  if(!email && !password){
+   setError('Please submit all values')
+  }
+  const payload = {email, password}
+  const response = await addUser(payload)
+  console.log(response,'response')
+}
   return (
-    <div>
+    <div className='mt-12 w-full md:w-1/2 m-auto'>
          <form className='w-full' onSubmit={handleSubmit}>
-      <CustomTitle>Login</CustomTitle> 
+      <CustomTitle>Signup</CustomTitle> 
       <p className="text-red-500">{error}</p>
       <div className='my-4'>
         <CustomLabel>Email</CustomLabel>
