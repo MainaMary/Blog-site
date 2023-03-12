@@ -26,7 +26,8 @@ const handleMenu = () =>{
         </div>
         
         </div>
-        <div className='hidden md:block'>
+        <div className='hidden md:flex'>
+        <CustomButton onClick={() =>navigate('/register')}>Sign up</CustomButton>
             <CustomButton onClick={() =>navigate('/login')}>Sign in</CustomButton>
         </div>
     </nav>
