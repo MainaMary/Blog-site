@@ -8,6 +8,7 @@ import { editReducer } from "../slice/EditSlice";
 import { useDispatch, useSelector,TypedUseSelectorHook } from "react-redux";
 import { userspostsApi } from "../features/user/userPostApi";
 import { commentPostsApi } from "../features/user/commentApi";
+import { userApi } from "../features/user/userApi";
 
 export const store = configureStore({
   reducer: {
@@ -17,10 +18,11 @@ export const store = configureStore({
     edit: editReducer,
     [postsApi.reducerPath]: postsApi.reducer,
     [userspostsApi.reducerPath]: userspostsApi.reducer,
-    [commentPostsApi.reducerPath] :commentPostsApi.reducer
+    [commentPostsApi.reducerPath] :commentPostsApi.reducer,
+    [userApi.reducerPath]: userApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(postsApi.middleware, userspostsApi.middleware, commentPostsApi.middleware),
+    getDefaultMiddleware().concat(postsApi.middleware, userspostsApi.middleware, commentPostsApi.middleware, userApi.middleware),
     
    
 });
