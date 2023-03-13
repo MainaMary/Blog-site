@@ -32,7 +32,11 @@ const handleSubmit = async (e:any) =>{
    setError('Please submit all values')
   }
   const payload = {email, password}
-  const response = await addUser(payload)
+  const response:any = await addUser(payload)
+  if(response?.error){
+    setError(response?.error?.data?.message)
+
+  }
   console.log(response,'response')
 }
   return (
