@@ -3,8 +3,10 @@ import BlogImg from "../../assets/blogging.svg";
 import Testimonials from './Testimonials';
 import CustomButton from '../../components/CustomButton';
 import CustomTitle from "../../components/CustomTitle";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
 
    <div>
@@ -16,7 +18,7 @@ const Home = () => {
         We are passionate about sharing our knowledge and insights on [topic/niche] with our readers. Our goal is to provide valuable content that helps you learn, grow, and achieve your goals. 
         </p>
        <div className='mt-8'>
-        <CustomButton>Get started</CustomButton>
+        <CustomButton onClick={() => navigate('/register')}>Get started</CustomButton>
        </div>
       </div>
       <div className='w-full md:w-[60%]'>
