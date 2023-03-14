@@ -6,11 +6,21 @@ export interface AuthState {
 }
 const initialState = {
     name: null,
-    toke: null
+    token: null
 
 }
 export const AuthSlice = createSlice({
         name: 'auth',
         initialState,
-        reducers: {}
-})
+        reducers: {
+            setCredentials :(state:AuthState,action:PayloadAction<any>) =>{
+                const {name, token} = action.payload
+                state.name = name
+                
+    
+            },
+            logOut : (state, action) =>{
+                state.name= null
+            }
+        }
+    })
