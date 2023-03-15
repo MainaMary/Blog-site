@@ -9,6 +9,7 @@ import { useDispatch, useSelector,TypedUseSelectorHook } from "react-redux";
 import { userspostsApi } from "../features/user/userPostApi";
 import { commentPostsApi } from "../features/user/commentApi";
 import { userApi } from "../features/user/userApi";
+import { authReducer } from "../slice/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     users: usersReducer,
     photos: photosReducer,
     edit: editReducer,
+    auth: authReducer,
     [postsApi.reducerPath]: postsApi.reducer,
     [userspostsApi.reducerPath]: userspostsApi.reducer,
     [commentPostsApi.reducerPath] :commentPostsApi.reducer,
