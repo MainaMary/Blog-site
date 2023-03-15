@@ -8,6 +8,8 @@ import useVisible from '../../hooks/useVisible'
 import CustomLoader from '../../components/CustomLoader'
 import { FormProps } from '../../model/types'
 import { useAddUserMutation } from '../../features/user/userApi'
+import { setCredentials } from '../../slice/authSlice'
+import { useAppDispatch } from '../../store/Store'
 
 const Signup = () => {
     const [formValues, setFormValues] = useState<FormProps>({
@@ -19,6 +21,7 @@ const [loading, setLoading] = useState('')
 const {visible, handleVisisble} = useVisible()
 const [addUser] = useAddUserMutation()
 const {email, password} = formValues
+const dispatch = useAppDispatch()
 
 const handleInputChange =(e:any) =>{
   const {value, name} = e.target
@@ -37,6 +40,7 @@ const handleSubmit = async (e:any) =>{
     setError(response?.error?.data?.message)
 
   }
+  dispatch(setCredentials(response?.data?.data))
   console.log(response,'response')
 }
   return (
