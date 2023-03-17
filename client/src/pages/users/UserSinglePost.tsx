@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import CommentTitle from "../../components/CustomTitle"
-import { useGetAllPostsCommentsQuery } from '../../features/user/commentApi'
+import { useGetAllPostsCommentsQuery, useDeleteCommentMutation } from '../../features/user/commentApi'
 
 interface Props {
   body:string;
@@ -15,10 +15,14 @@ interface Props {
 }
 
 const UserSinglePost = () => {
+  const [deleteComment] = useDeleteCommentMutation()
   const {id} = useParams()
   const {data} = useGetAllPostsCommentsQuery(id)
   console.log(data,'post comments')
- 
+const handleUpdate = (id:string) =>{} 
+const handleDelete = (id:string) =>{
+  deleteComment(id)
+}
   return (
 <div className="mt-12">
       <CommentTitle>Single Post</CommentTitle>
@@ -43,13 +47,13 @@ const UserSinglePost = () => {
               </p>
               <div className="flex justify-between mt-2">
                   <button
-                    onClick={() => handleUpdate(label._id)}
+                    onClick={() => handleUpdate(label.id)}
                     className=" rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 border-solid border-2 border-dark-blue bg-white text-dark-blue flex h-auto items-center"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(label._id)}
+                    onClick={() => handleDelete(label.id)}
                     className="rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 border-solid border-2 border-red-600 text-red-600 flex h-auto items-center cursor-pointer"
                   >
                     Delete
