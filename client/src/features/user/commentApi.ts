@@ -16,8 +16,13 @@ export const commentPostsApi = createApi({
             query:(id) =>`/post-comments/?postId=${id}`,
             providesTags:["Comment"]
 
+        }),
+        deleteComment: builder.mutation({
+            query:(id) =>`/comment/${id}`,
+            invalidatesTags:["Comment"]
+
         })
 
     })
 })
-export const { useAddCommentMutation, useGetAllPostsCommentsQuery} = commentPostsApi
+export const { useAddCommentMutation, useGetAllPostsCommentsQuery, useDeleteCommentMutation} = commentPostsApi
