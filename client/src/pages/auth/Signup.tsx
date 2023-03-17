@@ -40,6 +40,7 @@ const handleSubmit = async (e:any) =>{
     setError(response?.error?.data?.message)
 
   }
+  console.log(response?.data?.data)
   dispatch(setCredentials(response?.data?.data))
   console.log(response,'response')
 }

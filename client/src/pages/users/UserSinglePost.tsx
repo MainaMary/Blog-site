@@ -41,6 +41,20 @@ const UserSinglePost = () => {
               <p>
                 Name: <span className="text-dark-blue">{label.name}</span>
               </p>
+              <div className="flex justify-between mt-2">
+                  <button
+                    onClick={() => handleUpdate(label._id)}
+                    className=" rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 border-solid border-2 border-dark-blue bg-white text-dark-blue flex h-auto items-center"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(label._id)}
+                    className="rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 border-solid border-2 border-red-600 text-red-600 flex h-auto items-center cursor-pointer"
+                  >
+                    Delete
+                  </button>
+                </div>
             </div>
           ))}
         </div>
