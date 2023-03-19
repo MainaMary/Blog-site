@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {AiOutlineClose} from "react-icons/ai"
 import CustomButton from './CustomButton'
 import NavLink from './NavLink'
+import { useAppSelector } from '../store/Store'
 
 
 
@@ -13,6 +14,7 @@ const navigate = useNavigate()
 const handleMenu = () =>{
   setOpen(prev => !prev)
 }
+const state = useAppSelector(state => state.auth)
   return (
     <nav className='bg-[#f5f5f5] z-20 fixed shadow-md flex px-8 md:px-24 py-8  w-full justify-between items-center'>
         <h2 className=' cursor-pointer text-2xl text-dark-blue font-semibold' onClick={() =>navigate('/')}>Daily Blog News</h2>
