@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import CustomTitle from "../../components/CustomTitle"
 import CustomButton from '../../components/CustomButton'
@@ -22,6 +23,7 @@ const {visible, handleVisisble} = useVisible()
 const [addUser] = useAddUserMutation()
 const {email, password} = formValues
 const dispatch = useAppDispatch()
+const navigate = useNavigate()
 
 const handleInputChange =(e:any) =>{
   const {value, name} = e.target
@@ -42,6 +44,7 @@ const handleSubmit = async (e:any) =>{
   }
   console.log(response?.data?.data)
   dispatch(setCredentials(response?.data?.data))
+  navigate('/userPosts')
   console.log(response,'response')
 }
   return (
