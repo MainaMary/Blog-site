@@ -6,13 +6,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./store/Store";
 import { Provider } from "react-redux";
 import Navbar from "./components/Navbar";
+import ThemeProvider from "./theme/ThemeContext";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-    
-      <App />
-    
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </Provider>
-  
   </React.StrictMode>
 );
