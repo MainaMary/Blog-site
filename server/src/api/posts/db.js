@@ -7,7 +7,7 @@ const posts = async () => {
 };
 
 const getUserPosts = async (userId) => {
-  const posts = await Post.find({}).select({ "userId": userId, "_id": 0});
+  const posts = await Post.find({userId});
   return posts
 
 }
