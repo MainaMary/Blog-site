@@ -4,9 +4,9 @@ require('dotenv').config()
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY || "somethingveryrandomnaround";
 
-
+const expiresIn = 60 * 60 * 24 * 60;
 const createToken = ( email ) => {
-    return jwt.sign({ email: email}, SECRET_KEY, {expiresIn : "3h"})
+    return jwt.sign({ email: email}, SECRET_KEY, {expiresIn})
 };
 
 
