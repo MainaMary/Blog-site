@@ -12,6 +12,10 @@ const getUserPosts = async (userId) => {
 
 }
 
+const getPostById = async (id) => {
+  const post = await Post.findById(id);
+  return post;
+};
 
 const deletePostById = async (id) =>{
   const post = await Post.findByIdAndRemove(id)
