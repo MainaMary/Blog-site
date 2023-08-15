@@ -102,6 +102,8 @@ const AddPost = (props: ModalProps) => {
   };
 
   if (!openModal) return null;
+
+ 
   return (
     <CustomModal>
       <div className="w-full md:w-[50%] shadow-lg rounded-2xl flex m-auto bg-white px-8 py-3 items-center justify-center h-auto">

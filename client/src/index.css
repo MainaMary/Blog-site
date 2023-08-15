@@ -18,7 +18,7 @@
       @apply no-underline font-medium text-[#646cff] hover:text-red-700;
     }
     li {
-        @apply text-lg
+        @apply text-lg list-none
     }
   }
 .root,
@@ -45,3 +45,10 @@ body {
 button:hover {
   border-color: #646cff;
 } */
+
+.price{
+  display:flex;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -32,7 +32,7 @@ const Testimonials = () => {
               alt={label?.title}
               className="w-[30px] h-[30px] rounded-full m-auto"
             />
-            <p className="my-2 text-dark-gray">{email[index].split('@')[0]}</p>
+            <p className="my-2 text-dark-gray">{email[index]?.split('@')[0]}</p>
             <p>{body[index].slice(0, 50)}</p>
           </div>
         );

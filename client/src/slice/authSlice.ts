@@ -7,11 +7,20 @@ interface AuthTypes {
 }
 export interface AuthState {
     user: AuthTypes,
-    token: string | null
+    token: string | null,
 
 }
+const USER ='user'
 const initialState = {
-    user: {id:'', email:'', password:'', __v: 0},
+    // user: {id:'', email:'', password:'', __v: 0},
+    user: localStorage.getItem(USER)
+    ? JSON.parse(localStorage.getItem(USER) || '{}')
+    : {
+        id: '',
+    email:'',
+    password: '',
+    __v: ''
+    },
     token: null
 
 }
@@ -19,12 +28,12 @@ export const AuthSlice = createSlice({
         name: 'auth',
         initialState,
         reducers: {
-            setCredentials :(state:AuthState,action:PayloadAction<any>) =>{
-                const {name, token} = action.payload
-                state.user = name
-                state.token = token
-                
-    
+            setCredentials :(state:AuthState,action:PayloadAction<AuthTypes>) =>{
+                state.user = action.payload
+                localStorage.setItem(USER, JSON.stringify(action.payload))
+            },
+            setUserToken:(state:AuthState, action:PayloadAction<string>) =>{
+            state.token = action.payload
             },
             logOut : (state, action) =>{
                 state.user= {id:'', email:'', password:'', __v: 0}
@@ -32,7 +41,8 @@ export const AuthSlice = createSlice({
         }
     })
     export const {
-        setCredentials
+        setCredentials,
+        setUserToken
     } =  AuthSlice.actions;
     const authReducer = AuthSlice.reducer
     export { authReducer }

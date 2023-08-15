@@ -105,4 +105,3 @@ export interface Inputprops {
   message?: string;
   alertTitle: string;
 };
- 

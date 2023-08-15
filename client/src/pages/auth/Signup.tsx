@@ -38,6 +38,7 @@ const handleSubmit = async (e:any) =>{
   }
   const payload = {email, password}
   const response:any = await addUser(payload)
+  console.log({response})
   if(response?.error){
     setError(response?.error?.data?.message)
 
