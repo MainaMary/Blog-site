@@ -13,7 +13,9 @@ const getUserPosts = async (userId) => {
 }
 
 const getPostById = async (id) => {
-  const post = await Post.findById(id);
+  const post = await Post.findById(id).populate('comments');
+  console.log({id:post._id});
+  console.log({comments: post.comments[0].postId});
   return post;
 };
 

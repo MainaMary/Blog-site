@@ -10,6 +10,10 @@ userId: {
   type: String,
   ref: "User",
 },
+comments: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Comment'
+}],
   title: {
     type: String,
     required: [true, "Please include the post title"],
